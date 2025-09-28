@@ -52,12 +52,12 @@ public class Body extends javax.swing.JFrame {
       }
      public  boolean QINSERT(Bag item){
      ITEM=item; 
-    if(REAR==N){
+    if(REAR==N || REAR+1==FRONT){
        System.out.println("QUEUE FULL");
        return false; //Can not insert
     }
     else
-     if(FRONT==-1 || FRONT==REAR){   //NULL concept
+     if(FRONT==-1){   //NULL concept
        FRONT=0; REAR=0;
      }else
        REAR++;
@@ -73,8 +73,11 @@ public class Body extends javax.swing.JFrame {
     if(FRONT==REAR){
         FRONT=-1;
         REAR=-1;
-    }else
+    }else if(FRONT==size-1){
+        FRONT=0;
+    }else{
         FRONT++;
+    }
     return true;
   }
  public void showDatainQueue(){
@@ -88,6 +91,7 @@ public class Body extends javax.swing.JFrame {
      System.out.println("REAR:"+REAR);
  } 
  public void showTable() {
+    current=FRONT;
     for(int i=0;i<N;i++){
             jTable1.setValueAt(QUEUE[current].name, 0, current);
             current++;
@@ -95,30 +99,30 @@ public class Body extends javax.swing.JFrame {
                 current=0;
             }
         }
-    current=FRONT;
+    
     DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
         jTable1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
  }
  public void showArea(){
-     
      jTextArea1.setText("NAME : "+QUEUE[FRONT].name+"\nBag type : "+QUEUE[FRONT].bagtype
      +"\nTicket Number : "+QUEUE[FRONT].id+"\nWeight : "+QUEUE[FRONT].weight);
+     
      jTextArea1.setFont(new Font("Tahoma", Font.PLAIN, 14)); 
      jTextArea1.setBackground(new Color(255, 228, 225)); // สีชมพูอ่อน
     jTextArea1.setForeground(Color.DARK_GRAY);  
     jTextArea1.setBorder(BorderFactory.createLineBorder(Color.PINK, 2, true));
     jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-    
  }
     
     public Body() {
         initComponents();
             showTable();
             showArea();
-            
+            jLabel2.setText("FRONT : "+FRONT);
+            jLabel3.setText("REAR : "+REAR);
     }
 
     /**
@@ -212,6 +216,11 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
         jButton1.setForeground(new java.awt.Color(0, 204, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/1840744 (1).png"))); // NOI18N
         jButton1.setText("Paid");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -371,11 +380,29 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(REAR==N || REAR+1==FRONT){
+        if(REAR+1==FRONT){
             System.out.println("QUEUE full");
             JOptionPane.showMessageDialog(null, "QUEUE full ");
             return;
         }
+        if(FRONT==-1){
+        if(REAR==FRONT){
+            FRONT=REAR=0;
+            Bag ins=new Bag();
+        ins.name=jTextField1.getText();
+        ins.bagtype=Integer.parseInt(jTextField2.getText());
+        ins.id=jTextField3.getText();
+        ins.weight=Integer.parseInt(jTextField4.getText());
+        QUEUE[REAR]=ins;
+        N++;
+        showTable();
+        System.out.println("Insert data complete");
+        jLabel2.setText("FRONT : "+FRONT);
+            jLabel3.setText("REAR : "+REAR);
+        return;
+        }
+        }
+        
         Bag ins=new Bag();
         ins.name=jTextField1.getText();
         ins.bagtype=Integer.parseInt(jTextField2.getText());
@@ -385,7 +412,43 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
         N++;
         showTable();
         System.out.println("Insert data complete");
+        jLabel2.setText("FRONT : "+FRONT);
+            jLabel3.setText("REAR : "+REAR);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(QUEUE[FRONT]==null){
+           System.out.println("QUEUE empty");
+           JOptionPane.showMessageDialog(null, "QUEUE empty ");
+            return;
+        }
+        
+        if(REAR==FRONT){
+            QUEUE[FRONT]=null;
+            QUEUE[FRONT]=new Bag();
+            jTable1.setValueAt("", 0, FRONT);
+            showArea();
+        System.out.println("Delete data complete");
+            FRONT=REAR=-1;
+            jLabel2.setText("FRONT : "+FRONT);
+            jLabel3.setText("REAR : "+REAR);
+            return;
+        }
+        
+        int pre=FRONT;
+        if(QDELETE()){
+        QUEUE[pre]=null;
+        QUEUE[pre]=new Bag();
+        jTable1.setValueAt("", 0, pre);
+        N--;
+        showArea();
+        System.out.println("Delete data complete");
+        jLabel2.setText("FRONT : "+FRONT);
+            jLabel3.setText("REAR : "+REAR);
+        }else{
+            return;
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
