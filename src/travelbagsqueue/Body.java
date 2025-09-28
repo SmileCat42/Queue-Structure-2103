@@ -6,6 +6,7 @@ package travelbagsqueue;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.text.DecimalFormat;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -44,8 +45,8 @@ public class Body extends javax.swing.JFrame {
             QUEUE[i] = new Bag();
         }
       
-   QUEUE[6].setAll(1,"1034",20.7,"GR");
-   QUEUE[7].setAll(2,"2245",32.4,"RN");
+   QUEUE[6].setAll(1,"1034",29.4,"GR");
+   QUEUE[7].setAll(2,"2245",20.2,"RN");
    QUEUE[0].setAll(3,"3489",24.6,"AS");
    QUEUE[1].setAll(1,"1157",30.5,"SB");
    QUEUE[2].setAll(2,"2410",18.9,"KM");
@@ -120,6 +121,47 @@ public class Body extends javax.swing.JFrame {
 jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
  }
  public void setPic(){
+     if(FRONT==-1){
+         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nodata.png")));
+         return;
+     }
+}
+ public void showBill(){
+     if(FRONT==-1){
+         return;
+     }
+    double std,w,total,pu;
+    String over="Over : ";
+    if(QUEUE[FRONT].bagtype==1){
+        std=25.5;
+        w=(QUEUE[FRONT].weight)-std;
+        pu=800;
+    }else if(QUEUE[FRONT].bagtype==2){
+        std=23.8;
+        w=(QUEUE[FRONT].weight)-std;
+        pu=700;
+}else if(QUEUE[FRONT].bagtype==2){
+        std=24;
+        w=(QUEUE[FRONT].weight)-std;
+        pu=600;
+}else{
+        std=25;
+        w=(QUEUE[FRONT].weight)-std;
+        pu=750;
+}
+    
+    if(w<0){
+    over="Not over : ";
+    w=0;
+}
+
+total=100+(pu*w);
+
+    jLabel8.setText("Standard : "+std+" kg");
+jLabel9.setText(""+over+String.format("%.2f", w)+" kg");
+jLabel10.setText("Total : "+String.format("%.2f", total)+" baht");
+}
+public void showPic(){
      if(QUEUE[FRONT].bagtype==1){
          jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/suitcase.jpg")));
      }else if(QUEUE[FRONT].bagtype==2){
@@ -138,6 +180,8 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
             jLabel2.setText("FRONT : "+FRONT);
             jLabel3.setText("REAR : "+REAR);
             setPic();
+            showBill();
+            
     }
 
     /**
@@ -160,6 +204,10 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
         jTextArea1 = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -237,19 +285,45 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
             }
         });
 
+        jLabel8.setText("Standard :");
+
+        jLabel9.setText("Over :");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setText("Total :");
+
+        jLabel11.setText("    Fee : 100 baht");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -431,7 +505,7 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(QUEUE[FRONT]==null){
+        if(FRONT==-1){
            System.out.println("QUEUE empty");
            JOptionPane.showMessageDialog(null, "QUEUE empty ");
             return;
@@ -447,6 +521,7 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
             jLabel2.setText("FRONT : "+FRONT);
             jLabel3.setText("REAR : "+REAR);
             setPic();
+            showBill();
             return;
         }
         
@@ -461,6 +536,7 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
         jLabel2.setText("FRONT : "+FRONT);
             jLabel3.setText("REAR : "+REAR);
             setPic();
+            showBill();
         }else{
             return;
         }
@@ -495,12 +571,16 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
