@@ -4,6 +4,10 @@
  */
 package travelbagsqueue;
 
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+
 /**
  *
  * @author Windows10
@@ -13,18 +17,19 @@ public class Body extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Body.class.getName());
 
     final int size=8;  
-   int FRONT,current=6,REAR,N=2;
+   int FRONT=6,current=6,REAR=2,N=5;
    Bag ITEM;
         
    public static class Bag{
+       public String name;
        public int bagtype;
        public String id;
-       public double wieght;
-       public String name;
+       public double weight;
+       
        public void setAll(int a, String b, double c, String d){
            bagtype=a;
            id=b;
-           wieght=c;
+           weight=c;
            name=d;
        }
    }
@@ -34,20 +39,20 @@ public class Body extends javax.swing.JFrame {
             QUEUE[i] = new Bag();
         }
       
-   QUEUE[0].setAll(1,"1034",20.7,"GR");
-   QUEUE[1].setAll(2,"2245",32.4,"RN");
-   QUEUE[2].setAll(3,"3489",24.6,"AS");
-   QUEUE[3].setAll(1,"1157",30.5,"SB");
-   QUEUE[4].setAll(2,"2410",18.9,"KM");
+   QUEUE[6].setAll(1,"1034",20.7,"GR");
+   QUEUE[7].setAll(2,"2245",32.4,"RN");
+   QUEUE[0].setAll(3,"3489",24.6,"AS");
+   QUEUE[1].setAll(1,"1157",30.5,"SB");
+   QUEUE[2].setAll(2,"2410",18.9,"KM");
       }
      public  boolean QINSERT(Bag item){
      ITEM=item; 
     if(REAR==N){
-       System.out.println("OVERFLOW");
+       System.out.println("QUEUE FULL");
        return false; //Can not insert
     }
     else
-     if(FRONT==-1){   //NULL concept
+     if(FRONT==-1 || FRONT==REAR){   //NULL concept
        FRONT=0; REAR=0;
      }else
        REAR++;
@@ -77,9 +82,25 @@ public class Body extends javax.swing.JFrame {
      System.out.println("FRONT:"+FRONT);
      System.out.println("REAR:"+REAR);
  } 
+ public void showTable() {
+    String[] columnNames = new String[size];
+    for(int i=0;i<N;i++){
+            jTable1.setValueAt(QUEUE[current].name, 0, current);
+            current++;
+            if(current==8){
+                current=0;
+            }
+        }
+    current=FRONT;
+    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+ }
+    
     public Body() {
         initComponents();
-        
+            showTable();
     }
 
     /**
@@ -110,6 +131,8 @@ public class Body extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,6 +186,7 @@ public class Body extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "check bill", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         jButton1.setFont(new java.awt.Font("MV Boli", 1, 14)); // NOI18N
@@ -220,12 +244,19 @@ public class Body extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("INSERT");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Name");
 
-        jLabel5.setText("jLabel4");
+        jLabel5.setText("Bag type");
 
-        jLabel6.setText("jLabel4");
+        jLabel6.setText("Ticket Number");
+
+        jLabel7.setText("Weight");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -234,17 +265,19 @@ public class Body extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(jTextField2)
-                    .addComponent(jTextField1))
+                    .addComponent(jTextField1)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addGap(71, 71, 71)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -263,9 +296,16 @@ public class Body extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -299,6 +339,23 @@ public class Body extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(REAR==N || REAR+1==FRONT){
+            System.out.println("QUEUE full");
+            JOptionPane.showMessageDialog(null, "QUEUE full ");
+            return;
+        }
+        Bag ins=new Bag();
+        ins.name=jTextField1.getText();
+        ins.bagtype=Integer.parseInt(jTextField2.getText());
+        ins.id=jTextField3.getText();
+        ins.weight=Integer.parseInt(jTextField4.getText());
+        QINSERT(ins);
+        N++;
+        showTable();
+        System.out.println("Insert data complete");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,6 +391,7 @@ public class Body extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -345,5 +403,6 @@ public class Body extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
