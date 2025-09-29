@@ -20,11 +20,13 @@ public class Face2 extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("intro.gif");  // gif ที่ตั้ง loop=1
     JLabel label = new JLabel(icon);
     
-    new Timer(12000, e -> {
+    Timer timer = new Timer(12000, e -> {
             Body move = new Body();  // สร้างหน้าฟอร์มใหม่
             move.setVisible(true);     // แสดง Form2
             this.dispose();     // เปิดหน้าหลัก
-        }).start();
+        });
+            timer.setRepeats(false);  // ทำงานครั้งเดียว
+            timer.start();
     }
 
     /**

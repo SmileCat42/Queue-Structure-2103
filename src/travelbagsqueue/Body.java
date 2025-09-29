@@ -162,6 +162,10 @@ jLabel9.setText(""+over+String.format("%.2f", w)+" kg");
 jLabel10.setText("Total : "+String.format("%.2f", total)+" baht");
 }
 public void showPic(){
+    if(FRONT==-1){
+         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nodata.png")));
+         return;
+     }
      if(QUEUE[FRONT].bagtype==1){
          jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/suitcase.jpg")));
      }else if(QUEUE[FRONT].bagtype==2){
@@ -179,7 +183,7 @@ public void showPic(){
             showArea();
             jLabel2.setText("FRONT : "+FRONT);
             jLabel3.setText("REAR : "+REAR);
-            setPic();
+            showPic();
             showBill();
             
     }
@@ -520,7 +524,7 @@ public void showPic(){
             FRONT=REAR=-1;
             jLabel2.setText("FRONT : "+FRONT);
             jLabel3.setText("REAR : "+REAR);
-            setPic();
+            showPic();
             showBill();
             return;
         }
@@ -535,7 +539,7 @@ public void showPic(){
         System.out.println("Delete data complete");
         jLabel2.setText("FRONT : "+FRONT);
             jLabel3.setText("REAR : "+REAR);
-            setPic();
+            showPic();
             showBill();
         }else{
             return;
