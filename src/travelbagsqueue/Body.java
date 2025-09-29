@@ -8,11 +8,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -185,8 +187,38 @@ public void showPic(){
             jLabel3.setText("REAR : "+REAR);
             showPic();
             showBill();
-            
-    }
+            jTable1.setRowHeight(40);   // กำหนดความสูงแถว
+        jTable1.setFont(new Font("SansSerif", Font.BOLD, 18));
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+    jTable1.getColumnModel().getColumn(i).setPreferredWidth(60); // กว้างพอดี 2 ตัวอักษร
+        }
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+    jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+}
+        jTable1.setGridColor(new Color(200, 200, 200));  // เส้นจาง ๆ
+jTable1.setShowGrid(true);
+jTable1.setBackground(new Color(245, 245, 250)); // สีพื้นหลังอ่อน
+jTable1.setForeground(new Color(50, 50, 50));    // สีตัวอักษรเข้ม
+
+JTableHeader header = jTable1.getTableHeader();
+header.setFont(new Font("SansSerif", Font.BOLD, 16));
+
+DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+headerRenderer.setBackground(new Color(100, 149, 237)); // น้ำเงินโคบอลต์
+headerRenderer.setForeground(Color.WHITE);
+headerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
+    jTable1.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+}
+
+jScrollPane1.setBorder(BorderFactory.createEmptyBorder()); // ลบเส้นขอบเดิม
+jTable1.setFillsViewportHeight(true);
+
+}
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -262,8 +294,8 @@ public void showPic(){
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
