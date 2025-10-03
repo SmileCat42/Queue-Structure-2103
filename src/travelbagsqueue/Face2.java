@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package travelbagsqueue;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.*;
+import java.awt.*;
 /**
  *
  * @author Windows10
@@ -17,6 +20,9 @@ public class Face2 extends javax.swing.JFrame {
      */
     public Face2() {
         initComponents();
+        this.getContentPane().setBackground(new Color(98, 149, 150));
+        UIManager.put("OptionPane.messageFont", new Font("Tahoma", Font.PLAIN, 16));
+        UIManager.put("OptionPane.buttonFont", new Font("Tahoma", Font.PLAIN, 14));
         ImageIcon icon = new ImageIcon("intro.gif");  // gif ที่ตั้ง loop=1
     JLabel label = new JLabel(icon);
     
