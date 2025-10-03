@@ -22,14 +22,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
-
+import javax.swing.table.TableColumn;
 /**
  *
  * @author Windows10
  */
 public class Body extends javax.swing.JFrame {
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Body.class.getName());
 
@@ -56,10 +59,10 @@ public class Body extends javax.swing.JFrame {
             QUEUE[i] = new Bag();
         }
       
-   QUEUE[6].setAll(1,1034,29.4,"GR");
+   QUEUE[6].setAll(1,1034,26.8,"GR");
    QUEUE[7].setAll(2,2245,20.2,"RN");
    QUEUE[0].setAll(3,3489,24.6,"AS");
-   QUEUE[1].setAll(1,1157,30.5,"SB");
+   QUEUE[1].setAll(1,1157,27.3,"SB");
    QUEUE[2].setAll(2,2410,18.9,"KM");
       }
      public  boolean QINSERT(Bag item){
@@ -118,8 +121,10 @@ public class Body extends javax.swing.JFrame {
     DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
-        jTable1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
- }
+        for(int i = 0; i < jTable1.getColumnCount(); i++){
+        jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+    }
+}
  public void showArea(){
      jTextArea1.setText("NAME : "+QUEUE[FRONT].name+"\nBag type : "+QUEUE[FRONT].bagtype
      +"\nTicket Number : "+QUEUE[FRONT].id+"\nWeight : "+QUEUE[FRONT].weight);
@@ -160,7 +165,7 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
         w=(QUEUE[FRONT].weight)-std;
         pu=750;
 }
-    
+    jLabel9.setForeground(Color.BLACK);
     if(w<0){
     over="Not over : ";
     w=0;
@@ -170,6 +175,9 @@ total=100+(pu*w);
 
     jLabel8.setText("Standard : "+std+" kg");
 jLabel9.setText(""+over+String.format("%.2f", w)+" kg");
+if(w>0){
+    jLabel9.setForeground(Color.RED);
+}
 jLabel10.setText("Total : "+String.format("%.2f", total)+" baht");
 }
 public void showPic(){
@@ -207,6 +215,7 @@ public void showPic(){
     }
     return res;
 }
+         
     
     public Body() {
         initComponents();
@@ -221,6 +230,8 @@ public void showPic(){
         for (int i = 0; i < jTable1.getColumnCount(); i++) {
     jTable1.getColumnModel().getColumn(i).setPreferredWidth(60); // กว้างพอดี 2 ตัวอักษร
         }
+        
+        
         
         UIManager.put("OptionPane.messageFont", new Font("Tahoma", Font.PLAIN, 14));
         UIManager.put("OptionPane.buttonFont", new Font("Tahoma", Font.PLAIN, 14));
@@ -260,7 +271,6 @@ for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
     jTable1.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
 }
 
-
 jLabel1.setBorder(BorderFactory.createLineBorder(new Color(200,200,200), 2, true)); 
 jLabel1.setBorder(BorderFactory.createCompoundBorder(
         BorderFactory.createMatteBorder(0,0,4,4,new Color(180,180,180)), // เงาด้านล่าง+ขวา
@@ -283,7 +293,6 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         BorderFactory.createMatteBorder(0, 0, 4, 4, new Color(180, 180, 180)),
         BorderFactory.createLineBorder(Color.WHITE, 2, true)
 ));
-
 
 
 }
@@ -385,6 +394,7 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Curlz MT", 0, 14)); // NOI18N
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
@@ -401,13 +411,16 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Chakra Petch SemiBold", 0, 14)); // NOI18N
         jLabel8.setText("Standard :");
 
+        jLabel9.setFont(new java.awt.Font("Chakra Petch SemiBold", 0, 14)); // NOI18N
         jLabel9.setText("Over :");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Chakra Petch SemiBold", 1, 16)); // NOI18N
         jLabel10.setText("Total :");
 
+        jLabel11.setFont(new java.awt.Font("Chakra Petch SemiBold", 0, 14)); // NOI18N
         jLabel11.setText("    Fee : 100 baht");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -422,10 +435,12 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel11)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -435,9 +450,9 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
