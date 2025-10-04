@@ -4,6 +4,7 @@
  */
 package javautilQueue;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GradientPaint;
@@ -11,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.util.LinkedList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -21,142 +23,83 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
-/**
- *
- * @author Windows10
- */
+import java.util.Queue;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
+
 public class Body extends javax.swing.JFrame {
-    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Body.class.getName());
 
-    final int size=8;  
-   int FRONT=6,current=6,REAR=2,N=5;
-   Bag ITEM;
+   int FRONT=0,current=0,REAR=0,N=0;
         
    public static class Bag{
        public String name;
        public int bagtype;
        public int id;
        public double weight;
-       
+       public Bag(int a, int b, double c, String d){
+            bagtype=a;
+           id=b;
+           weight=c;
+           name=d;
+        }
        public void setAll(int a, int b, double c, String d){
            bagtype=a;
            id=b;
            weight=c;
            name=d;
+           
        }
    }
-   public static Bag[] QUEUE = new Bag[8];
-      static {
-        for (int i = 0; i < 8; i++) {
-            QUEUE[i] = new Bag();
-        }
-      
-   QUEUE[6].setAll(1,1034,26.8,"GR");
-   QUEUE[7].setAll(2,2245,20.2,"RN");
-   QUEUE[0].setAll(3,3489,24.6,"AS");
-   QUEUE[1].setAll(1,1157,27.3,"SB");
-   QUEUE[2].setAll(2,2410,18.9,"KM");
-      }
-     public  boolean QINSERT(Bag item){
-     ITEM=item; 
-    if(REAR==N || REAR+1==FRONT){
-       System.out.println("QUEUE FULL");
-       return false; //Can not insert
-    }
-    else
-     if(FRONT==-1){   //NULL concept
-       FRONT=0; REAR=0;
-     }else if(REAR==7){
-         REAR=0;
-     }else{
-       REAR++;
-     }
-    QUEUE[REAR]=ITEM;
-    return true;
-  }    
-       public boolean QDELETE(){
-    if(FRONT==-1){
-      System.out.println("Empty queue");
-      return false;
-    }
-    ITEM=QUEUE[FRONT];
-    if(FRONT==REAR){
-        FRONT=-1;
-        REAR=-1;
-    }else if(FRONT==size-1){
-        FRONT=0;
-    }else{
-        FRONT++;
-    }
-    return true;
-  }
- public void showDatainQueue(){
-     System.out.print("Data in Queue:");
-     for(int i=0;i<=REAR;i++){
-        System.out.print(QUEUE[i]+","); 
-        jTextArea1.setText(jTextArea1.getText()+"-"+QUEUE[i]);
-     }   
-     System.out.println();
-     System.out.println("FRONT:"+FRONT);
-     System.out.println("REAR:"+REAR);
- } 
- public void showTable() {
-    current=FRONT;
-    for(int i=0;i<N;i++){
-            jTable1.setValueAt(QUEUE[current].name, 0, current);
-            current++;
-            if(current==8){
-                current=0;
-            }
-        }
-    
-    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+
+        public static Queue<Bag> QUEUE = new LinkedList<>();
+   
+ public void showTable(String name) {
+            jTable1.setValueAt(name, 0, REAR);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
-        for(int i = 0; i < jTable1.getColumnCount(); i++){
-        jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-    }
+        jTable1.getColumnModel().getColumn(REAR).setCellRenderer(centerRenderer);
 }
  public void showArea(){
-     jTextArea1.setText("NAME : "+QUEUE[FRONT].name+"\nBag type : "+QUEUE[FRONT].bagtype
-     +"\nTicket Number : "+QUEUE[FRONT].id+"\nWeight : "+QUEUE[FRONT].weight);
+     jTextArea1.setText("NAME : "+QUEUE.peek().name+"\nBag type : "+QUEUE.peek().bagtype
+     +"\nTicket Number : "+QUEUE.peek().id+"\nWeight : "+QUEUE.peek().weight);
      
      jTextArea1.setFont(new Font("Tahoma", Font.PLAIN, 14)); 
      jTextArea1.setBackground(new Color(255, 228, 225)); // สีชมพูอ่อน
     jTextArea1.setForeground(Color.DARK_GRAY);  
     jTextArea1.setBorder(BorderFactory.createLineBorder(Color.PINK, 2, true));
     jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
  }
- public void setPic(){
-     if(FRONT==-1){
-         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nodata.png")));
-         return;
-     }
-}
  public void showBill(){
      if(FRONT==-1){
          return;
      }
     double std,w,total,pu;
     String over="Over : ";
-    if(QUEUE[FRONT].bagtype==1){
+    if(QUEUE.peek().bagtype==1){
         std=25.5;
-        w=(QUEUE[FRONT].weight)-std;
+        w=(QUEUE.peek().weight)-std;
         pu=800;
-    }else if(QUEUE[FRONT].bagtype==2){
+    }else if(QUEUE.peek().bagtype==2){
         std=23.8;
-        w=(QUEUE[FRONT].weight)-std;
+        w=(QUEUE.peek().weight)-std;
         pu=700;
-}else if(QUEUE[FRONT].bagtype==2){
+}else if(QUEUE.peek().bagtype==2){
         std=24;
-        w=(QUEUE[FRONT].weight)-std;
+        w=(QUEUE.peek().weight)-std;
         pu=600;
 }else{
         std=25;
-        w=(QUEUE[FRONT].weight)-std;
+        w=(QUEUE.peek().weight)-std;
         pu=750;
 }
     jLabel9.setForeground(Color.BLACK);
@@ -179,11 +122,11 @@ public void showPic(){
          jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nodata.png")));
          return;
      }
-     if(QUEUE[FRONT].bagtype==1){
+     if(QUEUE.peek().bagtype==1){
          jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/suitcase.jpg")));
-     }else if(QUEUE[FRONT].bagtype==2){
+     }else if(QUEUE.peek().bagtype==2){
          jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/packup.jpg")));
-     }else if(QUEUE[FRONT].bagtype==3){
+     }else if(QUEUE.peek().bagtype==3){
          jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/backpack2.jpg")));
      }else{
          jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nodata.png")));
@@ -213,19 +156,14 @@ public void showPic(){
     
     public Body() {
         initComponents();
-            showTable();
-            showArea();
-            jLabel2.setText("FRONT : "+FRONT);
-            jLabel3.setText("REAR : "+REAR);
-            showPic();
-            showBill();
-            jTable1.setRowHeight(40);   // กำหนดความสูงแถว
+        jTable1.setRowHeight(40);   // กำหนดความสูงแถว
         jTable1.setFont(new Font("SansSerif", Font.BOLD, 18));
         for (int i = 0; i < jTable1.getColumnCount(); i++) {
-    jTable1.getColumnModel().getColumn(i).setPreferredWidth(60); // กว้างพอดี 2 ตัวอักษร
+        jTable1.getColumnModel().getColumn(i).setPreferredWidth(60); // กว้างพอดี 2 ตัวอักษร
         }
         
-        
+        DefaultTableModel model1 = new DefaultTableModel();
+        JTable jTable1 = new JTable(model1);
         
         UIManager.put("OptionPane.messageFont", new Font("Tahoma", Font.PLAIN, 14));
         UIManager.put("OptionPane.buttonFont", new Font("Tahoma", Font.PLAIN, 14));
@@ -288,9 +226,8 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         BorderFactory.createLineBorder(Color.WHITE, 2, true)
 ));
 
-
 }
-    
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -382,6 +319,7 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -563,6 +501,8 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
 
         jLabel3.setText("REAR = -");
 
+        jLabel12.setText("Amount : ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -574,6 +514,8 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
@@ -586,7 +528,8 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -649,11 +592,7 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(REAR+1==FRONT){
-            System.out.println("QUEUE full");
-            JOptionPane.showMessageDialog(null, "QUEUE full ");
-            return;
-        }
+
         String tf1=jTextField1.getText();
         int tf2=checkValue(jTextField2.getText());
         int tf3=checkValue(jTextField3.getText());
@@ -683,13 +622,6 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
              JOptionPane.showMessageDialog(null, "กรอกหมายเลขตั๋วตั้งแต่ 1000-9999 ค่ะ ");
              return;
         }
-        for(int i=0;i<N;i++){
-            if(tf3==QUEUE[i].id){
-                System.out.println("This ticket number exist already");
-                 JOptionPane.showMessageDialog(null, "หมายเลขตั๋วนี้อยู่ในคิวแล้วค่ะ");
-                 return;
-            }
-        }
         if(tf4==-1){
             System.out.println("Pls take number for weight");
              JOptionPane.showMessageDialog(null, "กรอกตัวเลขที่ช่องน้ำหนักค่ะ ");
@@ -700,74 +632,33 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
              JOptionPane.showMessageDialog(null, "กรอกน้ำหนักตั้งแต่ 0-60 ค่ะ (0 คือไม่มีสัมภาระค่ะ) ");
              return;
         }
-        if(FRONT==-1){
-        if(REAR==FRONT){
-            FRONT=REAR=0;
-            Bag ins=new Bag();
             
-        ins.name=tf1;
-        ins.bagtype=tf2;
-        ins.id=tf3;
-        ins.weight=tf4;
-        QUEUE[REAR]=ins;
-        N++;
-        showTable();
-        System.out.println("Insert data complete");
-        jLabel2.setText("FRONT : "+FRONT);
-            jLabel3.setText("REAR : "+REAR);
-        return;
+        QUEUE.add(new Bag(tf2,tf3,tf4,tf1)); 
+        showTable(tf1);
+        if(QUEUE.size()==0){
+            showArea();
+            showBill();
         }
-        }
-        
-        Bag ins=new Bag();
-        ins.name=tf1;
-        ins.bagtype=tf2;
-        ins.id=tf3;
-        ins.weight=tf4;
-        QINSERT(ins);
-        N++;
-        showTable();
+        REAR++;
         System.out.println("Insert data complete");
-        jLabel2.setText("FRONT : "+FRONT);
-            jLabel3.setText("REAR : "+REAR);
+        jLabel12.setText("Amount : "+QUEUE.size());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(FRONT==-1){
+        if(QUEUE.size()==-1){
            System.out.println("QUEUE empty");
            JOptionPane.showMessageDialog(null, "QUEUE empty ");
             return;
         }
-        
-        if(REAR==FRONT){
-            QUEUE[FRONT]=null;
-            QUEUE[FRONT]=new Bag();
-            jTable1.setValueAt("", 0, FRONT);
-            showArea();
-        System.out.println("Delete data complete");
-            FRONT=REAR=-1;
-            jLabel2.setText("FRONT : "+FRONT);
-            jLabel3.setText("REAR : "+REAR);
-            showPic();
-            showBill();
-            return;
-        }
-        
-        int pre=FRONT;
-        if(QDELETE()){
-        QUEUE[pre]=null;
-        QUEUE[pre]=new Bag();
-        jTable1.setValueAt("", 0, pre);
-        N--;
+
+        QUEUE.poll();
+        jTable1.setValueAt("", 0, FRONT);
+        FRONT++;
         showArea();
         System.out.println("Delete data complete");
-        jLabel2.setText("FRONT : "+FRONT);
-            jLabel3.setText("REAR : "+REAR);
-            showPic();
-            showBill();
-        }else{
-            return;
-        }
+
+        showPic();
+        showBill();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -801,6 +692,7 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
