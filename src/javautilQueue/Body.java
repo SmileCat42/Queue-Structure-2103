@@ -31,13 +31,12 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-
 public class Body extends javax.swing.JFrame {
-    
+    int k=0;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Body.class.getName());
-
+    DefaultTableModel model;
    int FRONT=0,current=0,REAR=0,N=0;
-        
+   
    public static class Bag{
        public String name;
        public int bagtype;
@@ -60,9 +59,6 @@ public class Body extends javax.swing.JFrame {
 
         public static Queue<Bag> QUEUE = new LinkedList<>();
    
- public void showTable(String name) {
-            jTable1.setValueAt(name, 0, REAR);
-}
  public void showArea(){
      jTextArea1.setText("NAME : "+QUEUE.peek().name+"\nBag type : "+QUEUE.peek().bagtype
      +"\nTicket Number : "+QUEUE.peek().id+"\nWeight : "+QUEUE.peek().weight);
@@ -144,6 +140,7 @@ public void showPic(){
     
     public Body() {
         initComponents();
+        model = (DefaultTableModel) jTable1.getModel();
         
         jLabel12.setText("Amount : "+QUEUE.size());
         
@@ -156,20 +153,13 @@ public void showPic(){
         jTable1.getColumnModel().getColumn(i).setPreferredWidth(60); // กว้างพอดี 2 ตัวอักษร
         }
         
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
-        jTable1.getColumnModel().getColumn(REAR).setCellRenderer(centerRenderer);
-        
         jTextArea1.setFont(new Font("Tahoma", Font.PLAIN, 14)); 
          jTextArea1.setBackground(new Color(255, 228, 225)); // สีชมพูอ่อน
         jTextArea1.setForeground(Color.DARK_GRAY);  
           jTextArea1.setBorder(BorderFactory.createLineBorder(Color.PINK, 2, true));
          jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        
-        DefaultTableModel model1 = new DefaultTableModel();
-        JTable jTable1 = new JTable(model1);
+       
         
         UIManager.put("OptionPane.messageFont", new Font("Tahoma", Font.PLAIN, 14));
         UIManager.put("OptionPane.buttonFont", new Font("Tahoma", Font.PLAIN, 14));
@@ -495,10 +485,10 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null}
+                {}
             },
             new String [] {
-                "0", "1", "2", "3", "4", "5", "6", "7"
+
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -640,17 +630,28 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         }
             
         QUEUE.add(new Bag(tf2,tf3,tf4,tf1)); 
-        showTable(tf1);
+        
+        if(REAR==k){
+            model.addColumn(k);
+            k++;
+        }
+        
+        jTable1.setValueAt(tf1, 0, REAR);
         if(QUEUE.size()==1){
             showArea();
             showBill();
             showPic();
         }
         REAR++;
+        
         System.out.println("Insert data complete");
         jLabel12.setText("Amount : "+QUEUE.size());
         jLabel2.setText("FRONT = "+FRONT);
             jLabel3.setText("REAR = "+REAR);
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
+        jTable1.getColumnModel().getColumn(REAR-1).setCellRenderer(centerRenderer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
