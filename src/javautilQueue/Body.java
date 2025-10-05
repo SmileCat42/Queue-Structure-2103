@@ -62,22 +62,10 @@ public class Body extends javax.swing.JFrame {
    
  public void showTable(String name) {
             jTable1.setValueAt(name, 0, REAR);
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
-        jTable1.getColumnModel().getColumn(REAR).setCellRenderer(centerRenderer);
 }
  public void showArea(){
      jTextArea1.setText("NAME : "+QUEUE.peek().name+"\nBag type : "+QUEUE.peek().bagtype
      +"\nTicket Number : "+QUEUE.peek().id+"\nWeight : "+QUEUE.peek().weight);
-     
-     jTextArea1.setFont(new Font("Tahoma", Font.PLAIN, 14)); 
-     jTextArea1.setBackground(new Color(255, 228, 225)); // สีชมพูอ่อน
-    jTextArea1.setForeground(Color.DARK_GRAY);  
-    jTextArea1.setBorder(BorderFactory.createLineBorder(Color.PINK, 2, true));
-    jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-    jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
  }
  public void showBill(){
      if(FRONT==-1){
@@ -156,11 +144,24 @@ public void showPic(){
     
     public Body() {
         initComponents();
+
         jTable1.setRowHeight(40);   // กำหนดความสูงแถว
         jTable1.setFont(new Font("SansSerif", Font.BOLD, 18));
         for (int i = 0; i < jTable1.getColumnCount(); i++) {
         jTable1.getColumnModel().getColumn(i).setPreferredWidth(60); // กว้างพอดี 2 ตัวอักษร
         }
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
+        jTable1.getColumnModel().getColumn(REAR).setCellRenderer(centerRenderer);
+        
+        jTextArea1.setFont(new Font("Tahoma", Font.PLAIN, 14)); 
+         jTextArea1.setBackground(new Color(255, 228, 225)); // สีชมพูอ่อน
+        jTextArea1.setForeground(Color.DARK_GRAY);  
+          jTextArea1.setBorder(BorderFactory.createLineBorder(Color.PINK, 2, true));
+         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         
         DefaultTableModel model1 = new DefaultTableModel();
         JTable jTable1 = new JTable(model1);
@@ -635,9 +636,10 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
             
         QUEUE.add(new Bag(tf2,tf3,tf4,tf1)); 
         showTable(tf1);
-        if(QUEUE.size()==0){
+        if(QUEUE.size()==1){
             showArea();
             showBill();
+            showPic();
         }
         REAR++;
         System.out.println("Insert data complete");
@@ -645,18 +647,26 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(QUEUE.size()==-1){
+        if(QUEUE.size()==0){
            System.out.println("QUEUE empty");
            JOptionPane.showMessageDialog(null, "QUEUE empty ");
             return;
         }
-
         QUEUE.poll();
         jTable1.setValueAt("", 0, FRONT);
         FRONT++;
+        if(FRONT==REAR){
+            FRONT=REAR=0;
+            jTextArea1.setText("\nno data");
+            jLabel8.setText("Standard : -");
+            jLabel9.setText("Over : -");
+            jLabel10.setText("Total : -");
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nodata.png")));
+            return;
+        }
+
         showArea();
         System.out.println("Delete data complete");
-
         showPic();
         showBill();
     }//GEN-LAST:event_jButton1ActionPerformed
