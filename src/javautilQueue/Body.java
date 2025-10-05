@@ -144,6 +144,11 @@ public void showPic(){
     
     public Body() {
         initComponents();
+        
+        jLabel12.setText("Amount : "+QUEUE.size());
+        
+        jLabel2.setText("FRONT = "+FRONT);
+            jLabel3.setText("REAR = "+REAR);
 
         jTable1.setRowHeight(40);   // กำหนดความสูงแถว
         jTable1.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -644,6 +649,8 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         REAR++;
         System.out.println("Insert data complete");
         jLabel12.setText("Amount : "+QUEUE.size());
+        jLabel2.setText("FRONT = "+FRONT);
+            jLabel3.setText("REAR = "+REAR);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -655,6 +662,7 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         QUEUE.poll();
         jTable1.setValueAt("", 0, FRONT);
         FRONT++;
+        
         if(FRONT==REAR){
             FRONT=REAR=0;
             jTextArea1.setText("\nno data");
@@ -662,6 +670,9 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
             jLabel9.setText("Over : -");
             jLabel10.setText("Total : -");
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nodata.png")));
+            jLabel2.setText("FRONT = "+FRONT);
+            jLabel3.setText("REAR = "+REAR);
+            jLabel12.setText("Amount : "+QUEUE.size());
             return;
         }
 
@@ -669,6 +680,9 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         System.out.println("Delete data complete");
         showPic();
         showBill();
+        jLabel2.setText("FRONT = "+FRONT);
+            jLabel3.setText("REAR = "+REAR);
+            jLabel12.setText("Amount : "+QUEUE.size());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
