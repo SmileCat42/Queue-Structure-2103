@@ -29,7 +29,7 @@ public class Body extends javax.swing.JFrame {
     
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Body.class.getName());
-
+    DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
     final int size=8;  
    int FRONT=6,current=6,REAR=2,N=5;
    Bag ITEM;
@@ -53,11 +53,11 @@ public class Body extends javax.swing.JFrame {
             QUEUE[i] = new Bag();
         }
       
-   QUEUE[6].setAll(1,1034,26.8,"GR");
-   QUEUE[7].setAll(2,2245,20.2,"RN");
-   QUEUE[0].setAll(3,3489,24.6,"AS");
-   QUEUE[1].setAll(1,1157,27.3,"SB");
-   QUEUE[2].setAll(2,2410,18.9,"KM");
+   QUEUE[6].setAll(1,1034,21.4,"GR");
+   QUEUE[7].setAll(2,2245,14,"RN");
+   QUEUE[0].setAll(3,3489,19.7,"AS");
+   QUEUE[1].setAll(1,1157,12.6,"SB");
+   QUEUE[2].setAll(2,2410,11.9,"KM");
       }
      public  boolean QINSERT(Bag item){
      ITEM=item; 
@@ -112,7 +112,7 @@ public class Body extends javax.swing.JFrame {
             }
         }
     
-    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
         for(int i = 0; i < jTable1.getColumnCount(); i++){
@@ -143,19 +143,19 @@ jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZO
     double std,w,total,pu;
     String over="Over : ";
     if(QUEUE[FRONT].bagtype==1){
-        std=25.5;
+        std=20.5;
         w=(QUEUE[FRONT].weight)-std;
         pu=800;
     }else if(QUEUE[FRONT].bagtype==2){
-        std=23.8;
+        std=15;
         w=(QUEUE[FRONT].weight)-std;
         pu=700;
-}else if(QUEUE[FRONT].bagtype==2){
-        std=24;
+}else if(QUEUE[FRONT].bagtype==3){
+        std=18;
         w=(QUEUE[FRONT].weight)-std;
         pu=600;
 }else{
-        std=25;
+        std=20.5;
         w=(QUEUE[FRONT].weight)-std;
         pu=750;
 }
@@ -225,8 +225,8 @@ public void showPic(){
     jTable1.getColumnModel().getColumn(i).setPreferredWidth(60); // กว้างพอดี 2 ตัวอักษร
         }
         
-        
-        
+        jTable1.setValueAt(">"+QUEUE[6].name, 0, 6);
+
         UIManager.put("OptionPane.messageFont", new Font("Tahoma", Font.PLAIN, 14));
         UIManager.put("OptionPane.buttonFont", new Font("Tahoma", Font.PLAIN, 14));
         
@@ -256,7 +256,6 @@ jTable1.setForeground(new Color(50, 50, 50));    // สีตัวอักษ�
 JTableHeader header = jTable1.getTableHeader();
 header.setFont(new Font("SansSerif", Font.BOLD, 16));
 
-DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
 headerRenderer.setBackground(new Color(206, 6, 249)); // น้ำเงินโคบอลต์
 headerRenderer.setForeground(Color.WHITE);
 headerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -382,6 +381,7 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -590,9 +590,20 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 153));
+        jButton3.setFont(new java.awt.Font("Goudy Old Style", 1, 18)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/2422.png"))); // NOI18N
+        jButton3.setText("Condition");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         jLayeredPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -604,7 +615,8 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(192, 192, 192)))
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(88, Short.MAX_VALUE))
@@ -620,8 +632,13 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGap(0, 96, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(74, 74, 74))))
         );
 
@@ -712,9 +729,13 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         QUEUE[REAR]=ins;
         N++;
         showTable();
+        showPic();
+        showBill();
+        showArea();
         System.out.println("Insert data complete");
         jLabel2.setText("FRONT : "+FRONT);
             jLabel3.setText("REAR : "+REAR);
+            jTable1.setValueAt(">"+QUEUE[FRONT].name, 0, FRONT);
         return;
         }
         }
@@ -729,7 +750,8 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         showTable();
         System.out.println("Insert data complete");
         jLabel2.setText("FRONT : "+FRONT);
-            jLabel3.setText("REAR : "+REAR);
+        jLabel3.setText("REAR : "+REAR);
+        jTable1.setValueAt(">"+QUEUE[FRONT].name, 0, FRONT);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -750,6 +772,9 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
             jLabel3.setText("REAR : "+REAR);
             showPic();
             showBill();
+            jLabel8.setText("Standard : -");
+            jLabel9.setText("Over : -");
+            jLabel10.setText("Total : -");
             return;
         }
         
@@ -761,6 +786,7 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
         N--;
         showArea();
         System.out.println("Delete data complete");
+        jTable1.setValueAt(">"+QUEUE[FRONT].name, 0, FRONT);
         jLabel2.setText("FRONT : "+FRONT);
             jLabel3.setText("REAR : "+REAR);
             showPic();
@@ -769,6 +795,12 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
             return;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Condition move = new Condition();  // สร้างหน้าฟอร์มใหม่
+            move.setVisible(true);     // แสดง Form2
+            this.dispose();  
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -798,6 +830,7 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
