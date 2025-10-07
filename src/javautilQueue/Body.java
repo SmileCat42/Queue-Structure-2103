@@ -680,7 +680,9 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
             DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         centerRenderer.setVerticalAlignment(SwingConstants.CENTER);
-        jTable1.getColumnModel().getColumn(REAR-1).setCellRenderer(centerRenderer);
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+    jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+}
         
        for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
     jTable1.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
