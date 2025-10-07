@@ -11,17 +11,21 @@ import java.awt.Color;
  * @author Windows10
  */
 public class Condition extends javax.swing.JFrame {
-    
+    private Body mainPage;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Condition.class.getName());
-
+    
     /**
      * Creates new form Condition
      */
     public Condition() {
         initComponents();
+    }
+    public Condition(Body mainPage) {
+        initComponents();
         this.setResizable(false); // ไม่ให้ยืด
     this.setLocationRelativeTo(null); // จอกลาง
     this.getContentPane().setBackground(new Color(122, 122, 124));
+    this.mainPage = mainPage;
     }
 
     /**
@@ -72,9 +76,9 @@ public class Condition extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            Body move = new Body();  // สร้างหน้าฟอร์มใหม่
-            move.setVisible(true);     // แสดง Form2
-            this.dispose();  
+
+            this.setVisible(false);
+    mainPage.setVisible(true); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -31,7 +31,7 @@ public class Body extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Body.class.getName());
     DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
     final int size=8;  
-   int FRONT=6,current=6,REAR=2,N=5;
+   int FRONT=6,current=6,REAR=2,N=5,now;
    Bag ITEM;
         
    public static class Bag{
@@ -797,9 +797,10 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Condition move = new Condition();  // สร้างหน้าฟอร์มใหม่
+
+        Condition move = new Condition(this);  // สร้างหน้าฟอร์มใหม่
             move.setVisible(true);     // แสดง Form2
-            this.dispose();  
+            this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

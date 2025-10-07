@@ -725,9 +725,9 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Condition move = new Condition();  // สร้างหน้าฟอร์มใหม่
+        Condition move = new Condition(this);  // สร้างหน้าฟอร์มใหม่
         move.setVisible(true);     // แสดง Form2
-        this.dispose();
+        this.setVisible(false); // ซ่อนหน้าแรกไว้เฉย ๆ ไม่ปิด
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
