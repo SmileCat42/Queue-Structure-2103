@@ -209,6 +209,26 @@ public void showPic(){
     }
     return res;
 }
+         public double checkDouble(Object value) {
+    double res=-1;
+    if (value instanceof String) {
+        String str = (String) value;
+        
+        try {
+            // ถ้าแปลงเป็นเลขได้ แสดงว่าไม่ใช่ pure string
+            res=Double.parseDouble(str);
+            System.out.println("This is a number: " + str);
+        } catch (NumberFormatException e) {
+            // ถ้าแปลงไม่ได้ = เป็นข้อความ
+            System.out.println("This is a String: " + str);
+            return res; // ออกจากฟังก์ชัน
+        }
+    } else {
+        // กรณีเป็น object อื่นๆ
+        System.out.println("Not a string: " + value);
+    }
+    return res;
+}
          
     
     public Body() {
@@ -671,10 +691,15 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
             JOptionPane.showMessageDialog(null, "QUEUE full ");
             return;
         }
+        if(FRONT==0 && REAR==7){
+            System.out.println("QUEUE full");
+            JOptionPane.showMessageDialog(null, "QUEUE full ");
+            return;
+        }
         String tf1=jTextField1.getText();
         int tf2=checkValue(jTextField2.getText());
         int tf3=checkValue(jTextField3.getText());
-        int tf4=checkValue(jTextField4.getText());
+        double tf4=checkDouble(jTextField4.getText());
         if(!tf1.matches("[A-Z]+" )){
             System.out.println("recomment change name to short form 2 upper charactor ");
             JOptionPane.showMessageDialog(null, "กรุณาใส่ชื่อย่อ ภาษาอังกฤษพิมพ์ใหญ่ 2 ตัวอักษรค่ะ");
@@ -700,7 +725,7 @@ jPanel4.setBorder(BorderFactory.createCompoundBorder(
              JOptionPane.showMessageDialog(null, "กรอกหมายเลขตั๋วตั้งแต่ 1000-9999 ค่ะ ");
              return;
         }
-        for(int i=0;i<N;i++){
+        for(int i=0;i<8;i++){
             if(tf3==QUEUE[i].id){
                 System.out.println("This ticket number exist already");
                  JOptionPane.showMessageDialog(null, "หมายเลขตั๋วนี้อยู่ในคิวแล้วค่ะ");
