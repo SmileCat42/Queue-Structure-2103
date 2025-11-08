@@ -1,6 +1,6 @@
 <h1 align="center"><b>Project Stack โปรเจคแถวคอย</b></h1>
 <p align="center">
-And java.util.StackList และการใช้คำสั่งยูทิลคิว
+And java.util.QueueList และการใช้คำสั่งยูทิลคิว
 </p>
 
 <br><br>หน้าจอโหลด Loading Page<br>
