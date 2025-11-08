@@ -51,7 +51,7 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 1. ติดตั้งโปรแกรม Apache Netbeans
 <br>2. ดาวน์โหลดโปรเจคนี้ลงเครื่อง (ปุ่ม CODE สีเขียว)
 <br>3. เปิดโปรแกรม Netbeans เลือกที่ File > Open Project เลือกไฟล์เป็นโปรเจคนี้ที่ดาวน์โหลดไว้
-<br>4. สังเกตุแถบซ้ายมือจะมีชื่อไฟล์ที่โหลดมาไอคอนถ้วยกาแฟ กดคลิ็กดรอปดาวน์ลงมา กดลงมาต่อที่ Source Packages กดลงมาต่อที่ projectstack
+<br>4. สังเกตุแถบซ้ายมือจะมีชื่อไฟล์ที่โหลดมาไอคอนถ้วยกาแฟ กดคลิ็กดรอปดาวน์ลงมา กดลงมาต่อที่ Source Packages กดลงมาต่อที่ projectstack (หรือกดลงอีกโฟลเดอร์นึงคือ javautilQueue เพื่อดูฉบับ util.queue)
 <br>5. คลิ๊กขวาที่ชื่อไฟล์ Face2.java แล้วเลือก Run File
 <br><br><br><br>
 <a id="english"></a>
@@ -80,5 +80,5 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 1. Install Apache NetBeans IDE
 <br>2. Download this project to your computer (click green CODE button)
 <br>3. Open NetBeans, go to File > Open Project, and select this downloaded project
-<br>4. On the left panel, you will see the project name with coffee cup icon, click dropdown arrow to expand it, then open Source Packages → projectstack
+<br>4. On the left panel, you will see the project name with coffee cup icon, click dropdown arrow to expand it, then open Source Packages → travelbagsqueue (→ javautilQueue if you want to open util.queue version)
 <br>5. Right-click on the file Face2.java and select Run File to execute the program.
