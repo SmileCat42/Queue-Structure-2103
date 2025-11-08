@@ -1,9 +1,9 @@
-<h1 align="center"><b>Project Stack โปรเจคกองซ้อน</b></h1>
+<h1 align="center"><b>Project Stack โปรเจคแถวคอย</b></h1>
 <p align="center">
-And java.util.StackList และการใช้คำสั่งยูทิลสแต็ก
+And java.util.StackList และการใช้คำสั่งยูทิลคิว
 </p>
 
-<br><br>หน้าโปรแกรม Front Page<br>
+<br><br>หน้าจอโหลด Loading Page<br>
 ![นี่คือรูปหน้าจอ Login](https://github.com/SmileCat42/Stack-DataStructure-2103/blob/master/src/image/01.png)
 
 <br><br>ภายในโปรแกรม Program Page 
