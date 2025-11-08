@@ -81,4 +81,4 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 <br>2. Download this project to your computer (click green CODE button)
 <br>3. Open NetBeans, go to File > Open Project, and select this downloaded project
 <br>4. On the left panel, you will see the project name with coffee cup icon, click dropdown arrow to expand it, then open Source Packages → projectstack
-<br>5. Right-click on the file Front.java and select Run File to execute the program.
+<br>5. Right-click on the file Face2.java and select Run File to execute the program.
