@@ -27,9 +27,9 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 <br>
 
 <h2 style="text-indent: 2em; text-decoration: underline;">เนื้อหาที่ได้รับ</h2>
-1. เข้าใจโครงสร้างของกองซ้อนว่ามีรูปแบบการทำงานเป็นอย่างไร ไว้ใช้สำหรับทำอะไรและมีเงื่อนไขอย่างไร
-<br>2. ทราบถึงข้อจำกัดในการเข้าถึงตำแหน่งภายในกองซ้อน ซึ่งแตกต่างจากอาเรย์ที่สามารถระบุตำแหน่งได้เลย
-<br>3. ได้มีการใช้อัลกอริทึมหลากหลายรูปแบบ มีการ import java.util.StackList เข้ามาใช้งาน เพื่อทำให้เข้าใจความแตกต่างระหว่างสแต็กปกติและยูทิลสแต็ก
+1. เข้าใจโครงสร้างของคิวว่ามีรูปแบบการทำงานเป็นอย่างไร ไว้ใช้สำหรับทำอะไรและมีเงื่อนไขอย่างไร
+<br>2. ทราบถึงข้อจำกัดในการเข้าถึงตำแหน่งภายในโครงสร้างแถวคอย ซึ่งแตกต่างจากอาเรย์ที่สามารถระบุตำแหน่งได้เลย
+<br>3. ได้มีการใช้อัลกอริทึมหลากหลายรูปแบบ มีการ import java.util.QueueList เข้ามาใช้งาน เพื่อทำให้เข้าใจความแตกต่างระหว่างคิวปกติและยูทิลคิว
 <br>4. ทำให้นักศึกษาสามารถตัดสินใจเลือกใช้อัลกอริทึมที่เหมาะสมที่สุด มาประยุกต์ใช้งานกับคำสั่งบนแถวคอยแต่ละแบบได้
 
 <br>
@@ -59,8 +59,8 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 <br>
 
 <h2 style="text-indent: 2em; text-decoration: underline;">Content Received</h2>
-1. Understand how an array structure works, advantages and limitations
-<br>2. Learn how to access elements in array, including its constraints and the redundancy that may occur when using arrays in algorithms
+1. Understand how queue structure works, advantages and limitations
+<br>2. Learn how to access elements in queue, including its constraints and the redundancy that may occur when using arrays in algorithms
 <br>3. Gain experience using various algorithms, and learn to import java.util.ArrayList to understand the differences between array and ArrayList
 <br>4. Enable students to analyze and choose the most appropriate algorithm to apply effectively with different types of array operations
 
