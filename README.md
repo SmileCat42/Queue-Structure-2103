@@ -59,11 +59,10 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 <br>
 
 <h2 style="text-indent: 2em; text-decoration: underline;">Content Received</h2>
-1. Understand how queue structure works, advantages and limitations
-<br>2. Learn how to access elements in queue, including its constraints and the redundancy that may occur when using arrays in algorithms
-<br>3. Gain experience using various algorithms, and learn to import java.util.ArrayList to understand the differences between array and ArrayList
-<br>4. Enable students to analyze and choose the most appropriate algorithm to apply effectively with different types of array operations
-
+1. Learned how queue works, what it is used for, and its basic rules
+<br>2. Understood that can’t access elements directly in queue like array
+<br>3. Tried different algorithms and used java.util.Queue to see the difference between a regular queue and a java.util.queue
+<br>4. Learned how to choose the most suitable algorithm for different queue operations
 <br>
 <br>
 <h2 style="text-indent: 2em; text-decoration: underline;">Program Result</h2>
