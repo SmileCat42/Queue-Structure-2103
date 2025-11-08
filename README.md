@@ -3,7 +3,7 @@
 And java.util.QueueList และการใช้คำสั่งยูทิลคิว
 </p>
 
-<br><br>หน้าจอโหลด Loading Page<br>
+<br><br>หน้าจอโหลด Loading Page (กดเล่น gif ได้ can click play button)<br>
 ![นี่คือรูปหน้าจอ Login](https://github.com/SmileCat42/Queue-Structure-2103/blob/master/src/image/GHplane.gif)
 
 <br><br>ภายในโปรแกรม Program Page 
