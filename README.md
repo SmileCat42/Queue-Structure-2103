@@ -30,7 +30,7 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 <br>
 
 <h2 style="text-indent: 2em; text-decoration: underline;">เนื้อหาที่ได้รับ</h2>
-1. เข้าใจโครงสร้างของคิวว่ามีรูปแบบการทำงานเป็นอย่างไร ไว้ใช้สำหรับทำอะไรและมีเงื่อนไขอย่างไร
+1. เข้าใจโครงสร้างของคิวว่ามีรูปแบบการทำงานเป็นอย่างไร ลำดับเข้า-ออกของข้อมูลที่ใส่บนโครงสร้างแถวคอยเป็นอย่างไร สามารถยกตัวอย่างในชีวิตจริงหรือเห็นการทำงานต่างๆบนระบบคอมพิวเตอร์ก็สามารถบอกได้ว่าเป็นโครงสร้างประเภทใด
 <br>2. ทราบถึงข้อจำกัดในการเข้าถึงตำแหน่งภายในโครงสร้างแถวคอย ซึ่งแตกต่างจากอาเรย์ที่สามารถระบุตำแหน่งได้เลย
 <br>3. ได้มีการใช้อัลกอริทึมหลากหลายรูปแบบ มีการ import java.util.QueueList เข้ามาใช้งาน เพื่อทำให้เข้าใจความแตกต่างระหว่างคิวปกติและยูทิลคิว
 <br>4. ทำให้นักศึกษาสามารถตัดสินใจเลือกใช้อัลกอริทึมที่เหมาะสมที่สุด มาประยุกต์ใช้งานกับคำสั่งบนแถวคอยแต่ละแบบได้
@@ -62,7 +62,7 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 <br>
 
 <h2 style="text-indent: 2em; text-decoration: underline;">Content Received</h2>
-1. Learned how queue works, what it is used for, and its basic rules
+1. Understand how queue structure works in terms of the order of data being insert at Rear or delete at Front, can provide examples on reallife or computer systems to show which type of structure they represent
 <br>2. Understood that can’t access elements directly in queue like array
 <br>3. Tried different algorithms and used java.util.Queue to see the difference between a regular queue and a java.util.queue
 <br>4. Learned how to choose the most suitable algorithm for different queue operations
