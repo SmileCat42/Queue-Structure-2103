@@ -69,7 +69,7 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 <br>
 <br>
 <h2 style="text-indent: 2em; text-decoration: underline;">Program Result</h2>
-📄<a href="src/image/24.png" target="_blank">Assignment</a><br>
+📄 <a href="src/image/24.png" target="_blank">Assignment</a><br>
 
 📄 [Report program output](https://www.canva.com/design/DAG1H5kL8mk/WHUUVpAH2G2tuScLTkmaZg/edit?utm_content=DAG1H5kL8mk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 <br>
