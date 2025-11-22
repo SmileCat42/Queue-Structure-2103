@@ -45,7 +45,8 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 <br>
 <br>
 <h2 style="text-indent: 2em; text-decoration: underline;">ผลการเรียนรู้</h2>
-📄 <a href="src/image/exam2103.pdf" target="_blank">ข้อสอบ</a>
+📄 <a href="src/image/exam2103.pdf" target="_blank">ข้อสอบ</a><br>
+📄 <a href="src/score/score.pdf" target="_blank">คะแนนทั้งระดับชั้น</a>
 <br>
 <br>
 
@@ -77,7 +78,8 @@ And java.util.QueueList และการใช้คำสั่งยูท�
 <br>
 <br>
 <h2 style="text-indent: 2em; text-decoration: underline;">Learning Outcomes</h2>
-📄 <a href="src/image/exam2103.pdf" target="_blank">Exam</a>
+📄 <a href="src/image/exam2103.pdf" target="_blank">Exam</a><br>
+📄 <a href="src/score/score.pdf" target="_blank">Score all section</a>
 <br>
 <br>
 <h2 style="text-indent: 2em; text-decoration: underline;">How to open the program</h2>
